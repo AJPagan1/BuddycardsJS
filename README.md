@@ -35,7 +35,7 @@ Install all:
 
 ## Data
 
-kubejs/data/<namespace>/buddyinfo/
+kubejs/data/"namespace"/buddyinfo/
 
 Folders:
 - sets/
@@ -48,7 +48,7 @@ Folders:
 
 ## Assets
 
-kubejs/assets/<namespace>/textures/
+kubejs/assets/"namespace"/textures/
 
 Folders:
 - item/<set>/
@@ -159,10 +159,10 @@ Crafting:
 # 🎨 TEXTURES
 
 ## Items
-textures/item/<set>/<item>.png
+textures/item/"set name"/"item".png
 
 ## GUI
-textures/gui/<binder>.png
+textures/gui/"binder".png
 
 ## Booster Box
 _bottom.png  
