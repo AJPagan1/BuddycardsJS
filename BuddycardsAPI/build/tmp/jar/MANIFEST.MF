@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Specification-Title: buddycardsapi
+Specification-Vendor: Pagan
+Specification-Version: 0.2.0
+Implementation-Title: buddycards-api-bridge
+Implementation-Version: 0.2.0
+Implementation-Vendor: Pagan
+

@@ -1,0 +1,107 @@
+plugins {
+    id 'eclipse'
+    id 'idea'
+    id 'maven-publish'
+    id 'net.minecraftforge.gradle' version '[6.0,6.2)'
+}
+
+group = 'Pagan'
+version = '0.2.0'
+
+base {
+    archivesName = 'buddycardsapi'
+}
+
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(17)
+}
+
+minecraft {
+    mappings channel: 'official', version: '1.20.1'
+
+    copyIdeResources = true
+
+    runs {
+        configureEach {
+            workingDirectory project.file('run')
+
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+
+            mods {
+                buddycardsapi {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        client {
+            property 'forge.enabledGameTestNamespaces', 'buddycardsapi'
+        }
+
+        server {
+            property 'forge.enabledGameTestNamespaces', 'buddycardsapi'
+            args '--nogui'
+        }
+
+        gameTestServer {
+            property 'forge.enabledGameTestNamespaces', 'buddycardsapi'
+        }
+
+        data {
+            workingDirectory project.file('run-data')
+            args '--mod', 'buddycardsapi', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+        }
+    }
+}
+
+sourceSets.main.resources {
+    srcDir 'src/generated/resources'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    minecraft "net.minecraftforge:forge:1.20.1-47.4.10"
+
+    implementation fg.deobf(files("libs/Buddycards-1.20.1-4.2.1.jar"))
+    implementation fg.deobf(files("libs/curios-forge-5.14.1+1.20.1.jar"))
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+jar {
+    archiveBaseName.set('buddycardsapi')
+    archiveVersion.set('0.2.0')
+    archiveClassifier.set('')
+
+    manifest {
+        attributes([
+                "Specification-Title"     : "buddycardsapi",
+                "Specification-Vendor"    : "Pagan",
+                "Specification-Version"   : "0.2.0",
+                "Implementation-Title"    : project.name,
+                "Implementation-Version"  : project.version,
+                "Implementation-Vendor"   : "Pagan"
+        ])
+    }
+}
+
+jar.finalizedBy('reobfJar')
+
+publishing {
+    publications {
+        register('mavenJava', MavenPublication) {
+            artifact jar
+        }
+    }
+    repositories {
+        maven {
+            url "file://${project.projectDir}/mcmodsrepo"
+        }
+    }
+}
