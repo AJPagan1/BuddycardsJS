@@ -1,4 +1,4 @@
-# BuddycardsAPI — Complete Guide
+# BuddycardsJS — Complete Guide
 
 ![Minecraft](https://img.shields.io/badge/Minecraft-1.20.1-brightgreen)
 ![Forge](https://img.shields.io/badge/Forge-47.4.10-orange)
