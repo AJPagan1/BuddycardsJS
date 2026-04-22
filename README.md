@@ -4,7 +4,7 @@
 ![Forge](https://img.shields.io/badge/Forge-47.4.10-orange)
 ![Status](https://img.shields.io/badge/status-stable-success)
 
-BuddycardsAPI is a **fully data-driven extension mod for Buddycards** that allows you to create complete card systems using only JSON files and textures.
+BuddycardsJS is a **fully data-driven extension mod for KubeJS** that allows you to create complete card systems for the **Buddycards Mod by wildcard_gamer** using only JSON files and textures.
 
 This README is a **complete, no-compromises guide**. Nothing is omitted.
 
@@ -19,7 +19,7 @@ Install all:
 - Buddycards
 - KubeJS
 - Curios
-- BuddycardsAPI
+- BuddycardsJS
 
 ---
 
@@ -91,7 +91,9 @@ The API reads JSON and automatically generates:
   "displayName": "Test Card",
   "set": "test:test_set",
   "number": 1,
-  "rarity": "common"
+  "rarity": "common",
+  "tooltip": [
+    "A mysterious card from the test set."]
 }
 ```
 
@@ -195,6 +197,9 @@ _top.png
 
 ## Booster Box
 - 6 packs
+
+## Packs
+- 1 booster box
 
 ---
 
