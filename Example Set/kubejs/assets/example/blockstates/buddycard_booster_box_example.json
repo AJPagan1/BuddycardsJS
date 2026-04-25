@@ -1,0 +1,23 @@
+{
+  "variants": {
+    "facing=east,layers=1":  { "model": "example:block/buddycard_booster_box_example_1", "y": 90 },
+    "facing=north,layers=1": { "model": "example:block/buddycard_booster_box_example_1" },
+    "facing=south,layers=1": { "model": "example:block/buddycard_booster_box_example_1", "y": 180 },
+    "facing=west,layers=1":  { "model": "example:block/buddycard_booster_box_example_1", "y": 270 },
+
+    "facing=east,layers=2":  { "model": "example:block/buddycard_booster_box_example_2", "y": 90 },
+    "facing=north,layers=2": { "model": "example:block/buddycard_booster_box_example_2" },
+    "facing=south,layers=2": { "model": "example:block/buddycard_booster_box_example_2", "y": 180 },
+    "facing=west,layers=2":  { "model": "example:block/buddycard_booster_box_example_2", "y": 270 },
+
+    "facing=east,layers=3":  { "model": "example:block/buddycard_booster_box_example_3", "y": 90 },
+    "facing=north,layers=3": { "model": "example:block/buddycard_booster_box_example_3" },
+    "facing=south,layers=3": { "model": "example:block/buddycard_booster_box_example_3", "y": 180 },
+    "facing=west,layers=3":  { "model": "example:block/buddycard_booster_box_example_3", "y": 270 },
+
+    "facing=east,layers=4":  { "model": "example:block/buddycard_booster_box_example_4", "y": 90 },
+    "facing=north,layers=4": { "model": "example:block/buddycard_booster_box_example_4" },
+    "facing=south,layers=4": { "model": "example:block/buddycard_booster_box_example_4", "y": 180 },
+    "facing=west,layers=4":  { "model": "example:block/buddycard_booster_box_example_4", "y": 270 }
+  }
+}

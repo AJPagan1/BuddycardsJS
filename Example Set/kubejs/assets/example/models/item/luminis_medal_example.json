@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "example:item/example_set/luminis_medal_example"
+  }
+}

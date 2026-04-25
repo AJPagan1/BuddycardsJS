@@ -1,0 +1,7 @@
+{
+  "displayName": "Buddysteel Medal",
+  "set": "example:example_set",
+  "medalType": "buddysteel",
+  "effect": "minecraft:strength",
+  "level": 1
+}

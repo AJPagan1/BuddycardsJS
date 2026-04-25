@@ -1,0 +1,7 @@
+{
+  "displayName": "Zylex Medal",
+  "set": "example:example_set",
+  "medalType": "zylex",
+  "effect": "minecraft:strength",
+  "level": 3
+}

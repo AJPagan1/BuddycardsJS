@@ -1,0 +1,13 @@
+{
+  "displayName": "Example Pack",
+  "set": "example:example_set",
+  "cards": 3,
+  "foils": 1,
+  "texturePath": "example_set/pack",
+  "rarityWeights": {
+    "common": 70,
+    "uncommon": 20,
+    "rare": 8,
+    "epic": 2
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "displayName": "T",
+  "set": "example:example_set",
+  "number": 3,
+  "rarity": "epic",
+  "tooltip": [
+    "Another 'T' card for the example."],
+  "texturePath": "example_set/4"
+}

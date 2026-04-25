@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PPP",
+    "PPP"
+  ],
+  "key": {
+    "P": {
+      "item": "example:buddycard_pack_example"
+    }
+  },
+  "result": {
+    "item": "example:buddycard_booster_box_example",
+    "count": 1
+  }
+}

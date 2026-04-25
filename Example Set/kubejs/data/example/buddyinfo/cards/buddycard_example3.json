@@ -1,0 +1,9 @@
+{
+  "displayName": "S",
+  "set": "example:example_set",
+  "number": 3,
+  "rarity": "rare",
+  "tooltip": [
+    "An 'S' card for the example."],
+  "texturePath": "example_set/3"
+}

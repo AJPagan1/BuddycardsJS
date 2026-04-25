@@ -1,0 +1,7 @@
+{
+  "displayName": "Luminis Medal",
+  "set": "example:example_set",
+  "medalType": "luminis",
+  "effect": "minecraft:strength",
+  "level": 2
+}

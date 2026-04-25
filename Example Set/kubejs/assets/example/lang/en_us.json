@@ -1,0 +1,18 @@
+{
+  "item.example.buddysteel_medal_example": "Buddysteel Medal",
+  "item.example.buddycard_example1": "T",
+  "item.example.buddycard_example4.tooltip": "Another 'T' card for the example.",
+  "item.example.buddycard_pack_example": "Example Pack",
+  "item.example.buddycard_example1.tooltip": "A 'T' card for the example.",
+  "block.example.buddycard_booster_box_example": "Example Booster Box",
+  "item.example.luminis_medal_example": "Luminis Medal",
+  "item.example.zylex_medal_example": "Zylex Medal",
+  "item.example.buddycard_booster_box_example": "Example Booster Box",
+  "item.example.buddycard_example4": "T",
+  "item.example.buddycard_example2": "E",
+  "item.buddycards.buddycard.set_example:example_set": "Example Set",
+  "item.example.buddycard_example3": "S",
+  "item.example.buddycard_example3.tooltip": "An 'S' card for the example.",
+  "item.example.buddycard_example2.tooltip": "An 'E' card for the example .",
+  "item.example.buddycard_binder_example": "Example Binder"
+}
