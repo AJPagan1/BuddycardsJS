@@ -5,9 +5,9 @@
 ![Status](https://img.shields.io/badge/status-stable-success)
 ![Data Driven](https://img.shields.io/badge/system-data--driven-blue)
 
-BuddycardsJS is a data-driven extension for Buddycards that lets you add Buddycards-style content with JSON and textures.
+BuddycardsJS is a data-driven KubeJS addon for Buddycards that lets you create Buddycards-style content with JSON and textures.
 
-This README covers the current non-battle feature set, including:
+This README covers the current feature set, including:
 
 - sets
 - cards
@@ -16,8 +16,9 @@ This README covers the current non-battle feature set, including:
 - booster boxes
 - medals
 - loot injections
-- generated recipes, models, tags, and language files
-- updated default texture naming rules
+- generated recipes, models, blockstates, tags, and language files
+- default texture naming rules
+- custom texture path overrides
 
 ---
 
@@ -115,7 +116,7 @@ Always use the correct namespace in your JSON references.
 
 ---
 
-## Important texture naming rule
+## Important Texture Naming Rule
 
 Default texture names use the **set id path**, not the display name.
 
@@ -133,7 +134,7 @@ If the set id is:
 "set": "example:example_set"
 ```
 
-then the texture names are based on:
+then the default texture names are based on:
 
 ```text
 example_set
@@ -145,7 +146,7 @@ not:
 Example Set
 ```
 
-So spaces and capitalization in `displayName` do not affect the default texture file names.
+So spaces and capitalization in `displayName` do not affect default texture file names.
 
 ---
 
@@ -237,7 +238,7 @@ kubejs/data/<namespace>/buddyinfo/cards/<card_name>.json
 
 ### Default card texture name
 
-If `texturePath` is not provided, BuddycardsJS now looks for:
+If `texturePath` is not provided, BuddycardsJS looks for:
 
 ```text
 textures/item/<set_path>/<card_number>.png
@@ -286,7 +287,7 @@ BuddycardsJS generates the language key Buddycards already expects:
 item.<namespace>.<card_name>.tooltip
 ```
 
-So this edits the existing Buddycards tooltip behavior instead of creating a separate custom tooltip system.
+So this fills the existing Buddycards tooltip translation key instead of creating a separate tooltip system.
 
 ---
 
@@ -345,7 +346,7 @@ kubejs/data/<namespace>/buddyinfo/packs/<pack_name>.json
 
 ### Default pack texture name
 
-If `texturePath` is not provided, BuddycardsJS now looks for:
+If `texturePath` is not provided, BuddycardsJS looks for:
 
 ```text
 textures/item/<set_path>/pack.png
@@ -395,8 +396,19 @@ kubejs/data/<namespace>/buddyinfo/binders/<binder_name>.json
   "displayName": "Buddycard Binder Example",
   "set": "example:example_set",
   "rows": 6,
+  "large": false,
   "itemTexturePath": "example_set/custom_binder",
   "guiTexturePath": "custom_binder_gui"
+}
+```
+
+### Large binder example
+
+```json
+{
+  "displayName": "Buddycard Large Binder Example",
+  "set": "example:example_set",
+  "large": true
 }
 ```
 
@@ -405,6 +417,7 @@ kubejs/data/<namespace>/buddyinfo/binders/<binder_name>.json
 - `displayName` — optional
 - `set` — required
 - `rows` — optional
+- `large` — optional
 - `itemTexturePath` — optional
 - `guiTexturePath` — optional
 
@@ -412,33 +425,59 @@ kubejs/data/<namespace>/buddyinfo/binders/<binder_name>.json
 
 - `displayName` defaults from file name
 - `rows` defaults to `6`
+- `large` defaults to `false`
 
-### Default binder item texture name
+### Binder types
 
-If `itemTexturePath` is not provided, BuddycardsJS now looks for:
+BuddycardsJS supports both normal and large binders.
+
+- normal binder: `"large": false`
+- large binder: `"large": true`
+
+### Default binder item texture names
+
+If `itemTexturePath` is not provided:
+
+Normal binder:
 
 ```text
 textures/item/<set_path>/binder.png
 ```
 
-Example:
+Large binder:
+
+```text
+textures/item/<set_path>/large_binder.png
+```
+
+Examples:
 
 ```text
 kubejs/assets/example/textures/item/example_set/binder.png
+kubejs/assets/example/textures/item/example_set/large_binder.png
 ```
 
-### Default binder GUI texture name
+### Default binder GUI texture names
 
-If `guiTexturePath` is not provided, BuddycardsJS now looks for:
+If `guiTexturePath` is not provided:
+
+Normal binder:
 
 ```text
 textures/gui/<set_name>_binder.png
 ```
 
-Example:
+Large binder:
+
+```text
+textures/gui/<set_name>_large_binder.png
+```
+
+Examples:
 
 ```text
 kubejs/assets/example/textures/gui/example_set_binder.png
+kubejs/assets/example/textures/gui/example_set_large_binder.png
 ```
 
 ### Custom binder texture paths
@@ -507,11 +546,11 @@ kubejs/data/<namespace>/buddyinfo/booster_boxes/<booster_box_name>.json
 
 - `pack` must match a real pack id exactly
 - if the pack id is wrong, the booster box will not resolve correctly
-- booster boxes now render like Buddycards, with the display transforms applied in the `_1` block model instead of the item model
+- booster boxes render like Buddycards, with the display transforms applied in the `_1` block model instead of the item model
 
 ### Default booster box texture names
 
-If custom block texture paths are not provided, BuddycardsJS now looks for:
+If custom block texture paths are not provided, BuddycardsJS looks for:
 
 ```text
 textures/block/<set_path>/<set_name>_top.png
@@ -603,7 +642,7 @@ kubejs/data/<namespace>/buddyinfo/medals/<medal_name>.json
 
 ### Default medal texture name
 
-If `itemTexturePath` is not provided, BuddycardsJS now looks for:
+If `itemTexturePath` is not provided, BuddycardsJS looks for:
 
 ```text
 textures/item/<set_path>/<medal_type>_medal.png
@@ -664,6 +703,16 @@ kubejs/data/<namespace>/buddyinfo/loot_injections/<file_name>.json
 }
 ```
 
+### Fields
+
+- `targetLootTable` — required
+- `pack` — required
+- `weight` — optional
+- `rolls` — optional
+- `count.min` — optional
+- `count.max` — optional
+- `empty` — optional
+
 ### Defaults
 
 - `weight` defaults to `1`
@@ -719,6 +768,47 @@ If `targetLootTable` does not contain a namespace, BuddycardsJS assumes it is a 
 ```text
 minecraft:chests/<value>
 ```
+
+So:
+
+```json
+"targetLootTable": "simple_dungeon"
+```
+
+becomes:
+
+```json
+"targetLootTable": "minecraft:chests/simple_dungeon"
+```
+
+### Full id support
+
+If `targetLootTable` already contains a namespace, BuddycardsJS uses it exactly as written.
+
+So these are valid:
+
+```json
+"targetLootTable": "minecraft:chests/end_city_treasure"
+```
+
+```json
+"targetLootTable": "minecraft:gameplay/fishing/treasure"
+```
+
+```json
+"targetLootTable": "minecraft:archaeology/desert_pyramid"
+```
+
+### Recommended use
+
+Use short aliases for:
+- structure chest loot
+
+Use full ids for:
+- fishing
+- archaeology
+- entity loot
+- anything outside `minecraft:chests/`
 
 ### What BuddycardsJS generates from loot injections
 
@@ -785,6 +875,37 @@ Generated automatically:
 
 ---
 
+## Important Notes
+
+### Buddycards 4.3.0 foil compatibility
+
+BuddycardsJS now generates Buddycards 4.3.0-compatible card item models with support for:
+
+- foil-only variants
+- grade-only variants
+- grade + foil variants
+
+This means foil cards and graded foil cards render correctly with the updated Buddycards foil system.
+
+### Card stacking
+
+Cards stack if they are truly identical.
+
+They may not stack if they differ by:
+- foil state
+- grading
+- NBT
+
+### Generated files
+
+Do not manually edit generated files unless you know exactly what you are doing. They can be regenerated and overwritten.
+
+### Fresh worlds after big registry changes
+
+If you rename namespaces, mod ids, or item ids, use a fresh test world.
+
+---
+
 ## Testing Workflow
 
 When testing texture path or generated asset changes, keep only:
@@ -806,12 +927,86 @@ loot_tables/inject/
 
 Then relaunch the game and let BuddycardsJS regenerate them.
 
+For texture-path testing specifically, the most important generated files to delete are:
+
+```text
+kubejs/assets/<namespace>/models/item/
+kubejs/assets/<namespace>/models/block/
+kubejs/assets/<namespace>/blockstates/
+kubejs/assets/<namespace>/lang/en_us.json
+```
+
 Do not delete your source files under:
 
 ```text
 kubejs/data/<namespace>/buddyinfo/
 kubejs/assets/<namespace>/textures/
 ```
+
+---
+
+## Troubleshooting
+
+### `.\gradlew.bat` is not recognized
+
+You are probably not in the project folder. Make sure you are in the folder that contains:
+
+- `build.gradle`
+- `settings.gradle`
+- `gradlew.bat`
+
+### Items not showing up
+
+Check:
+- namespace spelling
+- file path spelling
+- JSON validity
+
+### Booster box not generating
+
+Most common reasons:
+- wrong folder path
+- wrong `pack` id
+- missing set/pack references
+
+### Booster box icon or hand render looks wrong
+
+BuddycardsJS booster boxes should match Buddycards by:
+
+- using a simple item model that parents to the `_1` block model
+- storing the display transforms in the `_1` block model
+- leaving `_2`, `_3`, and `_4` as plain block models
+
+If the render still looks wrong, delete the generated booster box item/block model files and let them regenerate.
+
+### Too much loot in structures
+
+Lower:
+- `rolls`
+- `count.max`
+
+and increase:
+- `empty`
+
+To get closer to Buddycards feel, use something like:
+
+```json
+{
+  "targetLootTable": "simple_dungeon",
+  "pack": "example:buddycard_pack_example",
+  "weight": 1,
+  "rolls": 2,
+  "count": {
+    "min": 1,
+    "max": 2
+  },
+  "empty": 3
+}
+```
+
+### Seeing `item.<namespace>.<card>.tooltip` in-game
+
+That means the generated language file is missing the tooltip key. Make sure the card JSON has a `tooltip` string and that the generated `en_us.json` was regenerated.
 
 ---
 
@@ -875,6 +1070,24 @@ kubejs/assets/example/textures/item/example_set/binder.png
 kubejs/assets/example/textures/gui/example_set_binder.png
 ```
 
+### `binders/buddycard_large_binder_example.json`
+
+```json
+{
+  "displayName": "Buddycard Large Binder Example",
+  "set": "example:example_set",
+  "rows": 6,
+  "large": true
+}
+```
+
+Default texture files:
+
+```text
+kubejs/assets/example/textures/item/example_set/large_binder.png
+kubejs/assets/example/textures/gui/example_set_large_binder.png
+```
+
 ### `booster_boxes/buddycard_booster_box_example.json`
 
 ```json
@@ -924,14 +1137,6 @@ kubejs/assets/example/textures/item/example_set/buddysteel_medal.png
   "empty": 3
 }
 ```
-
----
-
-## Not Included
-
-BuddycardsJS currently does not implement the Buddycards battle system.
-
-Everything documented here is focused on the non-battle side of Buddycards content creation.
 
 ---
 
